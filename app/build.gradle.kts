@@ -1,17 +1,21 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
+    id("kotlin-platform-android")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
-    compileSdk  = 31
+    compileSdk = Versions.compile_sdk
 
     defaultConfig {
         applicationId = "com.rivaldy.id.cocktail"
-        minSdk = 23
-        targetSdk = 31
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = Versions.min_sdk
+        targetSdk = Versions.target_sdk
+        versionCode = Versions.version_code
+        versionName = Versions.version_name
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -36,11 +40,41 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.4.0")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.2")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    // DEFAULT DEPENDENCIES
+    implementation(MyDependencies.core_ktx)
+    implementation(MyDependencies.appcompat)
+    implementation(MyDependencies.material)
+    testImplementation(MyDependencies.junit)
+    androidTestImplementation(MyDependencies.test_ext_junit)
+    androidTestImplementation(MyDependencies.espresso_core)
+
+    // UI
+    implementation(MyDependencies.constraint_layout)
+    implementation(MyDependencies.ui_ktx)
+    implementation(MyDependencies.navigation_fragment_ktx)
+
+    // REMOTE
+    implementation(MyDependencies.retrofit)
+    implementation(MyDependencies.retrofit2_converter_gson)
+    implementation(MyDependencies.retrofit2_adapter_rxjava2)
+    implementation(MyDependencies.okhttp3)
+
+    // Coroutines
+    testImplementation(MyDependencies.kotlinx_coroutines_test)
+
+    // Glide
+    implementation(MyDependencies.glide)
+
+    // Lifecycle KTX
+    implementation(MyDependencies.lifecycle_extensions)
+    // Activity & Fragment KTX
+    implementation(MyDependencies.activity_ktx)
+    implementation(MyDependencies.fragment_ktx)
+
+    // DI - Hilt
+    implementation(MyDependencies.hilt)
+    kapt(MyDependencies.hilt_kapt)
+
+    // ViewModel with Hilt
+    implementation(MyDependencies.hilt_viewmodel)
 }
