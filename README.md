@@ -1,2 +1,1 @@
-# cocktail-app-mvvm
-interview wlb.co.id
+# mvvm-cocktail-app
