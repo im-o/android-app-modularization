@@ -6,4 +6,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Cocktail MVVM"
-include (":app")
+include(":app")
+include(":base")
