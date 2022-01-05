@@ -14,6 +14,7 @@ android {
         minSdk = Versions.min_sdk
         targetSdk = Versions.target_sdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"https://www.thecocktaildb.com/api/json/v1/1/\"")
     }
 
     buildTypes {
