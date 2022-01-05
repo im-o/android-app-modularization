@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/filterNameTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_ripple_white_primary_square"
+        android:drawablePadding="@dimen/space_6"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/space_16"
+        android:paddingVertical="@dimen/space_16"
+        android:text="@string/order_by_glass"
+        android:textColor="@color/colorTextGrey"
+        app:drawableStartCompat="@drawable/ic_baseline_navigate_next_24" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_1"
+        android:background="@color/colorDivider" />
+</LinearLayout>

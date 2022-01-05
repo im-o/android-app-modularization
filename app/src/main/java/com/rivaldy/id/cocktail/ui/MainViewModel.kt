@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rivaldy.id.base.data.DataRepository
-import com.rivaldy.id.base.data.model.api.category.DrinkResponse
+import com.rivaldy.id.base.data.model.api.drink.DrinkResponse
 import com.rivaldy.id.base.data.network.DataResource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -21,11 +21,26 @@ class MainViewModel @Inject constructor(
     private val dataRepository: DataRepository
 ) : ViewModel() {
 
-    private val _categories: MutableLiveData<DataResource<DrinkResponse>> = MutableLiveData()
-    val categories: LiveData<DataResource<DrinkResponse>> = _categories
+    private val _drinks: MutableLiveData<DataResource<DrinkResponse>> = MutableLiveData()
+    val drinks: LiveData<DataResource<DrinkResponse>> = _drinks
 
     fun getCategoriesApiCall(category: String) = viewModelScope.launch {
-        _categories.value = DataResource.Loading
-        _categories.value = dataRepository.getCategoriesApiCall(category)
+        _drinks.value = DataResource.Loading
+        _drinks.value = dataRepository.getCategoriesApiCall(category)
+    }
+
+    fun getAlcoholicsApiCall(category: String) = viewModelScope.launch {
+        _drinks.value = DataResource.Loading
+        _drinks.value = dataRepository.getAlcoholicsApiCall(category)
+    }
+
+    fun getGlassesApiCall(category: String) = viewModelScope.launch {
+        _drinks.value = DataResource.Loading
+        _drinks.value = dataRepository.getGlassesApiCall(category)
+    }
+
+    fun searchByNameApiCall(query: String) = viewModelScope.launch {
+        _drinks.value = DataResource.Loading
+        _drinks.value = dataRepository.searchByNameApiCall(query)
     }
 }

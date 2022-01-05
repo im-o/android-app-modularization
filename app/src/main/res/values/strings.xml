@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Cocktail MVVM</string>
+    <string name="todo">TODO</string>
+    <string name="search_by_cocktail_name">Search cocktail by name…</string>
+    <string name="order_by_alcoholic">Order by alcoholic</string>
+    <string name="order_by_category">Order by category</string>
+    <string name="order_by_glass">Order by glass</string>
+    <string name="drink_me">Drink ME</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="filter_drink_by">Filter Drink by</string>
 </resources>

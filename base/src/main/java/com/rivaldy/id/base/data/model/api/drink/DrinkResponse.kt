@@ -1,4 +1,4 @@
-package com.rivaldy.id.base.data.model.api.category
+package com.rivaldy.id.base.data.model.api.drink
 
 
 import com.google.gson.annotations.SerializedName

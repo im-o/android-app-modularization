@@ -1,6 +1,8 @@
 package com.rivaldy.id.base.data.remote
 
-import com.rivaldy.id.base.data.model.api.category.DrinkResponse
+import com.rivaldy.id.base.data.model.api.detail_drink.DetailDrinkResponse
+import com.rivaldy.id.base.data.model.api.drink.DrinkResponse
+import com.rivaldy.id.base.data.model.api.filter_drink.FilterDrinkResponse
 
 /**
  * Created by rivaldy on 05/01/22.
@@ -9,4 +11,11 @@ import com.rivaldy.id.base.data.model.api.category.DrinkResponse
 
 interface ApiHelper {
     suspend fun getCategoriesApiCall(category: String): DrinkResponse
+    suspend fun getAlcoholicsApiCall(alcoholic: String): DrinkResponse
+    suspend fun getGlassesApiCall(glasses: String): DrinkResponse
+    suspend fun getFilterCategoriesApiCall(query: String): FilterDrinkResponse
+    suspend fun getFilterAlcoholicsApiCall(query: String): FilterDrinkResponse
+    suspend fun getFilterGlassesApiCall(query: String): FilterDrinkResponse
+    suspend fun searchByNameApiCall(query: String): DrinkResponse
+    suspend fun getDetailByIdApiCall(id: String): DetailDrinkResponse
 }

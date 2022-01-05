@@ -14,6 +14,7 @@ object MyDependencies {
     const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espresso_test_version}"
 
     //UI
+    const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swiperefreshlayout_version}"
     const val constraint_layout = "androidx.constraintlayout:constraintlayout:${Versions.constraint_version}"
     const val ui_ktx = "androidx.navigation:navigation-ui-ktx:${Versions.ui_ktx_version}"
     const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:${Versions.ui_ktx_version}"
