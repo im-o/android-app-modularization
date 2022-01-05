@@ -3,12 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_dark_white_outline.xml" value="0.161328125" />
         <entry key="app/src/main/res/drawable/bg_ripple_white_primary_square.xml" value="0.161328125" />
         <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.161328125" />
+        <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.161328125" />
         <entry key="app/src/main/res/drawable/ic_baseline_local_drink_24.xml" value="0.161328125" />
         <entry key="app/src/main/res/font/lato.xml" value="0.171875" />
         <entry key="app/src/main/res/font/lato_black.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_drink_detail.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/app_bar_drink_detail.xml" value="0.14921875" />
+        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.14921875" />
         <entry key="app/src/main/res/layout/fragment_filter_dialog.xml" value="0.18" />
         <entry key="app/src/main/res/layout/row_item_cocktail.xml" value="0.18" />
         <entry key="app/src/main/res/layout/row_item_drink.xml" value="0.14921875" />

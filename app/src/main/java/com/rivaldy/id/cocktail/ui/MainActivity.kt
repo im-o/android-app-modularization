@@ -21,8 +21,10 @@ import com.rivaldy.id.base.util.UtilConstants.STR_COCKTAIL
 import com.rivaldy.id.base.util.UtilConstants.ZERO_DATA
 import com.rivaldy.id.base.util.UtilExceptions.handleApiError
 import com.rivaldy.id.base.util.UtilExtensions.isAreVisible
+import com.rivaldy.id.base.util.UtilExtensions.openActivity
 import com.rivaldy.id.cocktail.R
 import com.rivaldy.id.cocktail.databinding.ActivityMainBinding
+import com.rivaldy.id.cocktail.ui.drink_detail.DrinkDetailActivity
 import com.rivaldy.id.cocktail.ui.filter_dialog.FilterDialogFragment
 import com.rivaldy.id.cocktail.ui.filter_dialog.FilterListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,8 +43,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
     override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
 
     override fun initView() {
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.appBar.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         binding.listDataRV.layoutManager = gridLayoutManager
         binding.listDataRV.adapter = mainAdapter
         loadDrinkData("")
@@ -157,6 +160,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
     }
 
     private fun mainAdapterClick(drinkData: DrinkData) {
+        openActivity(DrinkDetailActivity::class.java) {
+            putParcelable(DrinkDetailActivity.EXTRA_DRINK, drinkData)
+        }
     }
 
     private fun showFilterDialog(filterType: String) {
