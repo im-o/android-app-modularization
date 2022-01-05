@@ -1,6 +1,6 @@
 package com.rivaldy.id.base.data.remote
 
-import com.rivaldy.id.base.data.model.api.category.DrinkResponse
+import com.rivaldy.id.base.data.model.api.drink.DrinkResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

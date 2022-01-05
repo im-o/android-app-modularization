@@ -1,6 +1,6 @@
 package com.rivaldy.id.base.data
 
-import com.rivaldy.id.base.data.model.api.category.DrinkResponse
+import com.rivaldy.id.base.data.model.api.drink.DrinkResponse
 import com.rivaldy.id.base.data.remote.AppApiHelper
 import javax.inject.Inject
 
