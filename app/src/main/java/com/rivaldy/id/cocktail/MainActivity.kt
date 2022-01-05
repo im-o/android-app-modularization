@@ -1,11 +1,18 @@
 package com.rivaldy.id.cocktail
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.rivaldy.id.base.base.BaseActivity
+import com.rivaldy.id.base.data.network.DataResource
+import com.rivaldy.id.cocktail.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+    override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
+
+    override fun initView() {
+    }
+
+    override fun initObservers() {
+    }
+
+    override fun showFailure(failure: DataResource.Failure) {
     }
 }

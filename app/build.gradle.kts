@@ -40,6 +40,8 @@ android {
 
 dependencies {
 
+    implementation(project(mapOf("path" to ":base")))
+
     // DEFAULT DEPENDENCIES
     implementation(MyDependencies.core_ktx)
     implementation(MyDependencies.appcompat)
