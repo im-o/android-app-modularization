@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/searchMenu"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/search_by_cocktail_name"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/byAlcoholicMenu"
+        android:icon="@drawable/ic_baseline_sort_24"
+        android:title="@string/order_by_alcoholic"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/byCategoryMenu"
+        android:icon="@drawable/ic_baseline_sort_24"
+        android:title="@string/order_by_category"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/byGlassMenu"
+        android:icon="@drawable/ic_baseline_sort_24"
+        android:title="@string/order_by_glass"
+        app:showAsAction="collapseActionView" />
+</menu>

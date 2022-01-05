@@ -21,11 +21,16 @@ class MainViewModel @Inject constructor(
     private val dataRepository: DataRepository
 ) : ViewModel() {
 
-    private val _categories: MutableLiveData<DataResource<DrinkResponse>> = MutableLiveData()
-    val categories: LiveData<DataResource<DrinkResponse>> = _categories
+    private val _drinks: MutableLiveData<DataResource<DrinkResponse>> = MutableLiveData()
+    val drinks: LiveData<DataResource<DrinkResponse>> = _drinks
 
     fun getCategoriesApiCall(category: String) = viewModelScope.launch {
-        _categories.value = DataResource.Loading
-        _categories.value = dataRepository.getCategoriesApiCall(category)
+        _drinks.value = DataResource.Loading
+        _drinks.value = dataRepository.getCategoriesApiCall(category)
+    }
+
+    fun searchByNameApiCall(query: String) = viewModelScope.launch {
+        _drinks.value = DataResource.Loading
+        _drinks.value = dataRepository.searchByNameApiCall(query)
     }
 }

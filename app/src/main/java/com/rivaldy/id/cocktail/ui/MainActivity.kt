@@ -2,10 +2,12 @@ package com.rivaldy.id.cocktail.ui
 
 import android.os.Handler
 import android.os.Looper
+import android.view.Menu
 import androidx.activity.viewModels
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.rivaldy.id.base.base.BaseActivity
-import com.rivaldy.id.base.data.model.api.category.DrinkData
+import com.rivaldy.id.base.data.model.api.drink.DrinkData
 import com.rivaldy.id.base.data.network.DataResource
 import com.rivaldy.id.base.util.PaginationListener
 import com.rivaldy.id.base.util.UtilConstants.DEFAULT_LIMIT_PAGE
@@ -13,11 +15,12 @@ import com.rivaldy.id.base.util.UtilConstants.STR_COCKTAIL
 import com.rivaldy.id.base.util.UtilConstants.ZERO_DATA
 import com.rivaldy.id.base.util.UtilExceptions.handleApiError
 import com.rivaldy.id.base.util.UtilExtensions.isAreVisible
+import com.rivaldy.id.cocktail.R
 import com.rivaldy.id.cocktail.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryTextListener {
     private val mainAdapter = MainAdapter { mainAdapterClick(it) }
     private val viewModel by viewModels<MainViewModel>()
     private var listDrink = mutableListOf<DrinkData>()
@@ -30,14 +33,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
 
     override fun initView() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
         binding.listDataRV.layoutManager = gridLayoutManager
         binding.listDataRV.adapter = mainAdapter
-        initData()
+        loadDrinkData("")
         initListener()
     }
 
     override fun initObservers() {
-        viewModel.categories.observe(this, {
+        viewModel.drinks.observe(this, {
             when (it) {
                 is DataResource.Loading -> isLoadData(true)
                 is DataResource.Success -> showCategories(it.value.drinks)
@@ -51,14 +56,39 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         handleApiError(failure)
     }
 
-    private fun initData() {
-        viewModel.getCategoriesApiCall(STR_COCKTAIL)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        val searchItem = menu?.findItem(R.id.searchMenu)
+        val searchView = searchItem?.actionView as SearchView
+        searchView.queryHint = getString(R.string.search_by_cocktail_name)
+        searchView.isIconified = true
+        searchView.setOnQueryTextListener(this)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        loadDrinkData(query ?: "")
+        return false
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        val strQuery = newText ?: ""
+        if (strQuery.isEmpty()) loadDrinkData(strQuery)
+        return false
+    }
+
+    private fun loadDrinkData(query: String) {
+        if (query.isEmpty()) viewModel.getCategoriesApiCall(STR_COCKTAIL)
+        else {
+            resetPage()
+            viewModel.searchByNameApiCall(query)
+        }
     }
 
     private fun initListener() {
         binding.swipeRefresh.setOnRefreshListener {
             resetPage()
-            initData()
+            loadDrinkData("")
         }
 
         binding.listDataRV.addOnScrollListener(object : PaginationListener(gridLayoutManager) {
@@ -70,7 +100,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     showLimitData()
                 }, 1500)
             }
-
             override fun isLastPage() = isLastPage
             override fun isLoading() = isLoadPage
 
@@ -88,8 +117,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     private fun showCategories(drinks: MutableList<DrinkData>?) {
-        binding.noDataTV.isAreVisible(drinks?.size == ZERO_DATA)
         isLoadData(false)
+        binding.noDataTV.isAreVisible(drinks == null || drinks.size == ZERO_DATA)
+        binding.listDataRV.isAreVisible(drinks != null || drinks?.size ?: 0 > ZERO_DATA)
         listDrink = drinks ?: return
         showLimitData()
     }
