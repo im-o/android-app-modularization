@@ -29,6 +29,16 @@ class MainViewModel @Inject constructor(
         _drinks.value = dataRepository.getCategoriesApiCall(category)
     }
 
+    fun getAlcoholicsApiCall(category: String) = viewModelScope.launch {
+        _drinks.value = DataResource.Loading
+        _drinks.value = dataRepository.getAlcoholicsApiCall(category)
+    }
+
+    fun getGlassesApiCall(category: String) = viewModelScope.launch {
+        _drinks.value = DataResource.Loading
+        _drinks.value = dataRepository.getGlassesApiCall(category)
+    }
+
     fun searchByNameApiCall(query: String) = viewModelScope.launch {
         _drinks.value = DataResource.Loading
         _drinks.value = dataRepository.searchByNameApiCall(query)

@@ -1,27 +1,35 @@
 package com.rivaldy.id.cocktail.ui
 
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.rivaldy.id.base.base.BaseActivity
 import com.rivaldy.id.base.data.model.api.drink.DrinkData
+import com.rivaldy.id.base.data.model.local.FilterDataLocal
 import com.rivaldy.id.base.data.network.DataResource
 import com.rivaldy.id.base.util.PaginationListener
 import com.rivaldy.id.base.util.UtilConstants.DEFAULT_LIMIT_PAGE
+import com.rivaldy.id.base.util.UtilConstants.FILTER_BY_ALCOHOLIC
+import com.rivaldy.id.base.util.UtilConstants.FILTER_BY_CATEGORY
+import com.rivaldy.id.base.util.UtilConstants.FILTER_BY_GLASSES
 import com.rivaldy.id.base.util.UtilConstants.STR_COCKTAIL
 import com.rivaldy.id.base.util.UtilConstants.ZERO_DATA
 import com.rivaldy.id.base.util.UtilExceptions.handleApiError
 import com.rivaldy.id.base.util.UtilExtensions.isAreVisible
 import com.rivaldy.id.cocktail.R
 import com.rivaldy.id.cocktail.databinding.ActivityMainBinding
+import com.rivaldy.id.cocktail.ui.filter_dialog.FilterDialogFragment
+import com.rivaldy.id.cocktail.ui.filter_dialog.FilterListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryTextListener {
-    private val mainAdapter = MainAdapter { mainAdapterClick(it) }
+class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryTextListener, FilterListener {
+    private val mainAdapter by lazy { MainAdapter { mainAdapterClick(it) } }
     private val viewModel by viewModels<MainViewModel>()
     private var listDrink = mutableListOf<DrinkData>()
     private var limitData = DEFAULT_LIMIT_PAGE
@@ -66,6 +74,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
         return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.byCategoryMenu -> showFilterDialog(FILTER_BY_CATEGORY)
+            R.id.byAlcoholicMenu -> showFilterDialog(FILTER_BY_ALCOHOLIC)
+            R.id.byGlassMenu -> showFilterDialog(FILTER_BY_GLASSES)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onQueryTextSubmit(query: String?): Boolean {
         loadDrinkData(query ?: "")
         return false
@@ -75,6 +92,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
         val strQuery = newText ?: ""
         if (strQuery.isEmpty()) loadDrinkData(strQuery)
         return false
+    }
+
+    override fun filterDrinkByName(filter: FilterDataLocal) {
+        when (filter.type) {
+            FILTER_BY_CATEGORY -> viewModel.getCategoriesApiCall(filter.name ?: "")
+            FILTER_BY_ALCOHOLIC -> viewModel.getAlcoholicsApiCall(filter.name ?: "")
+            FILTER_BY_GLASSES -> viewModel.getGlassesApiCall(filter.name ?: "")
+        }
     }
 
     private fun loadDrinkData(query: String) {
@@ -100,6 +125,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
                     showLimitData()
                 }, 1500)
             }
+
             override fun isLastPage() = isLastPage
             override fun isLoading() = isLoadPage
 
@@ -131,6 +157,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
     }
 
     private fun mainAdapterClick(drinkData: DrinkData) {
+    }
 
+    private fun showFilterDialog(filterType: String) {
+        val filterDialogFragment = FilterDialogFragment()
+        val bundle = Bundle()
+        bundle.putString(FilterDialogFragment.EXTRA_FILTER_TYPE, filterType)
+        filterDialogFragment.arguments = bundle
+        filterDialogFragment.show(supportFragmentManager, FilterDialogFragment::class.java.simpleName)
     }
 }

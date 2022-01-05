@@ -10,6 +10,10 @@ object UtilConstants {
     const val LOG_MESSAGE = "LOG_MESSAGE"
     const val NO_INTERNET = "NO_INTERNET"
     const val STR_COCKTAIL = "Cocktail"
+    const val STR_FILTER_LIST = "list"
+    const val FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY"
+    const val FILTER_BY_ALCOHOLIC = "FILTER_BY_ALCOHOLIC"
+    const val FILTER_BY_GLASSES = "FILTER_BY_GLASSES"
 
     //INT
     const val OTHER_ERROR = 999

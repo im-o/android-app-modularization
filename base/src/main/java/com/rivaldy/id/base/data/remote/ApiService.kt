@@ -14,12 +14,20 @@ import retrofit2.http.Query
 interface ApiService {
     @GET("filter.php")
     suspend fun getCategories(@Query("c") category: String?): DrinkResponse
+
+    @GET("filter.php")
     suspend fun getAlcoholics(@Query("a") alcoholic: String?): DrinkResponse
+
+    @GET("filter.php")
     suspend fun getGlasses(@Query("g") glasses: String?): DrinkResponse
 
     @GET("list.php")
     suspend fun getFilterCategories(@Query("c") query: String?): FilterDrinkResponse
+
+    @GET("list.php")
     suspend fun getFilterAlcoholics(@Query("a") query: String?): FilterDrinkResponse
+
+    @GET("list.php")
     suspend fun getFilterGlasses(@Query("g") query: String?): FilterDrinkResponse
 
     @GET("search.php")
