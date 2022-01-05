@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/font/lato.xml" value="0.171875" />
+        <entry key="app/src/main/res/font/lato_black.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/row_item_cocktail.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/row_item_drink.xml" value="0.14921875" />
         <entry key="base/src/main/res/layout/dialog_progress.xml" value="0.14" />
       </map>
     </option>

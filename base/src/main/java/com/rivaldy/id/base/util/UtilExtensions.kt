@@ -19,6 +19,10 @@ object UtilExtensions {
         startActivity(intent)
     }
 
+    fun View.isAreVisible(isVisible: Boolean) {
+        visibility = if (isVisible) View.VISIBLE else View.GONE
+    }
+
     fun Context.myToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
