@@ -51,6 +51,7 @@ dependencies {
     androidTestImplementation(MyDependencies.espresso_core)
 
     // UI
+    implementation(MyDependencies.swiperefreshlayout)
     implementation(MyDependencies.constraint_layout)
     implementation(MyDependencies.ui_ktx)
     implementation(MyDependencies.navigation_fragment_ktx)

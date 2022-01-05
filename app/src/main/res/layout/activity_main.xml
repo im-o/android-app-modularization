@@ -22,23 +22,29 @@
             app:title="@string/app_name" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listDataRV"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:fillViewport="true"
-        android:orientation="vertical"
-        android:overScrollMode="never"
-        android:paddingStart="@dimen/space_8"
-        android:paddingTop="@dimen/space_6"
-        android:paddingEnd="@dimen/space_8"
-        android:paddingBottom="@dimen/space_16"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:spanCount="2"
-        tools:itemCount="10"
-        tools:listitem="@layout/row_item_cocktail" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listDataRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:paddingStart="@dimen/space_8"
+            android:paddingTop="@dimen/space_6"
+            android:paddingEnd="@dimen/space_8"
+            android:paddingBottom="@dimen/space_16"
+            tools:itemCount="10"
+            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/row_item_cocktail"
+            tools:orientation="vertical"
+            tools:spanCount="2" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <TextView
         android:id="@+id/noDataTV"
