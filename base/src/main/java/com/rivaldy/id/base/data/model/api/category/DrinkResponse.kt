@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 data class DrinkResponse(
     @SerializedName("drinks")
-    val drinks: List<DrinkData>? = null
+    val drinks: MutableList<DrinkData>? = null
 )
