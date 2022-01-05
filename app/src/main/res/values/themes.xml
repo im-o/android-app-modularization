@@ -29,11 +29,6 @@
         <item name="titleTextColor">@color/colorPrimary</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
         <item name="colorControlNormal">@color/white</item>
-        <item name="android:contentInsetLeft">0dp</item>
-        <item name="android:contentInsetStart">0dp</item>
-        <item name="contentInsetLeft">0dp</item>
-        <item name="contentInsetStart">0dp</item>
-        <item name="contentInsetStartWithNavigation">0dp</item>
     </style>
 
     <style name="CustomActionBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

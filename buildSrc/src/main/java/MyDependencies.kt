@@ -9,6 +9,7 @@ object MyDependencies {
     const val core_ktx = "androidx.core:core-ktx:${Versions.core_ktx_version}"
     const val appcompat = "androidx.appcompat:appcompat:${Versions.app_compat_version}"
     const val material = "com.google.android.material:material:${Versions.material_version}"
+    const val legacy_support = "androidx.legacy:legacy-support-v4:${Versions.legacy_support}"
     const val junit = "junit:junit:${Versions.junit_version}"
     const val test_ext_junit = "androidx.test.ext:junit:${Versions.junit_test_version}"
     const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espresso_test_version}"

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.drink_detail.DrinkDetailActivity">
+
+    <include
+        android:id="@+id/appBar"
+        layout="@layout/app_bar_drink_detail" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/layoutNSV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/imageCV"
+                style="@style/Widget.MaterialComponents.CardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                app:cardCornerRadius="@dimen/space_16"
+                app:cardElevation="@dimen/space_8"
+                app:cardUseCompatPadding="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/drinkImageIV"
+                    android:layout_width="160dp"
+                    android:layout_height="240dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/todo"
+                    android:scaleType="centerCrop"
+                    android:src="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/drinkTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:includeFontPadding="false"
+                android:paddingStart="@dimen/space_8"
+                android:paddingEnd="@dimen/space_8"
+                android:text="@string/load_data"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/size_20"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageCV" />
+
+            <TextView
+                android:id="@+id/drinkInfoTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:includeFontPadding="false"
+                android:text="@string/load_data"
+                android:textAlignment="center"
+                android:textSize="@dimen/size_14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/drinkTitleTV"
+                app:layout_constraintStart_toStartOf="@id/drinkTitleTV"
+                app:layout_constraintTop_toBottomOf="@id/drinkTitleTV"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Ordinary Drink • Alcoholic • Cocktail glass" />
+
+            <TextView
+                android:id="@+id/hintDescriptionTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:maxLines="2"
+                android:text="@string/instructions"
+                android:textSize="@dimen/size_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/drinkTitleTV"
+                app:layout_constraintStart_toStartOf="@id/drinkTitleTV"
+                app:layout_constraintTop_toBottomOf="@id/drinkInfoTV"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_1"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorDivider"
+                app:layout_constraintEnd_toEndOf="@+id/hintDescriptionTV"
+                app:layout_constraintStart_toStartOf="@+id/hintDescriptionTV"
+                app:layout_constraintTop_toBottomOf="@+id/hintDescriptionTV" />
+
+            <TextView
+                android:id="@+id/descriptionTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:text="@string/load_data"
+                android:textSize="@dimen/size_14"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/drinkTitleTV"
+                app:layout_constraintStart_toStartOf="@id/drinkTitleTV"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="@tools:sample/lorem/random" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
