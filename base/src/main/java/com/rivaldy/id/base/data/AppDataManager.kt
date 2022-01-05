@@ -1,6 +1,8 @@
 package com.rivaldy.id.base.data
 
+import com.rivaldy.id.base.data.model.api.detail_drink.DetailDrinkResponse
 import com.rivaldy.id.base.data.model.api.drink.DrinkResponse
+import com.rivaldy.id.base.data.model.api.filter_drink.FilterDrinkResponse
 import com.rivaldy.id.base.data.remote.AppApiHelper
 import javax.inject.Inject
 
@@ -14,5 +16,33 @@ class AppDataManager @Inject constructor(
 ) : DataManager {
     override suspend fun getCategoriesApiCall(category: String): DrinkResponse {
         return api.getCategoriesApiCall(category)
+    }
+
+    override suspend fun getAlcoholicsApiCall(alcoholic: String): DrinkResponse {
+        return api.getAlcoholicsApiCall(alcoholic)
+    }
+
+    override suspend fun getGlassesApiCall(glasses: String): DrinkResponse {
+        return api.getGlassesApiCall(glasses)
+    }
+
+    override suspend fun getFilterCategoriesApiCall(query: String): FilterDrinkResponse {
+        return api.getFilterCategoriesApiCall(query)
+    }
+
+    override suspend fun getFilterAlcoholicsApiCall(query: String): FilterDrinkResponse {
+        return api.getFilterAlcoholicsApiCall(query)
+    }
+
+    override suspend fun getFilterGlassesApiCall(query: String): FilterDrinkResponse {
+        return api.getFilterGlassesApiCall(query)
+    }
+
+    override suspend fun searchByNameApiCall(query: String): DrinkResponse {
+        return api.searchByNameApiCall(query)
+    }
+
+    override suspend fun getDetailByIdApiCall(id: String): DetailDrinkResponse {
+        return api.getDetailByIdApiCall(id)
     }
 }
