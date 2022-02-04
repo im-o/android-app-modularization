@@ -1,3 +1,5 @@
+import dependencies.MyDependencies
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -39,8 +41,8 @@ android {
 }
 
 dependencies {
-
-    implementation(project(mapOf("path" to ":base")))
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    api(project(Modules.base))
 
     // DEFAULT DEPENDENCIES
     implementation(MyDependencies.core_ktx)
