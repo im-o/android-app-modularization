@@ -1,5 +1,6 @@
 package com.rivaldy.id.cocktail.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -50,6 +51,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
         binding.listDataRV.adapter = mainAdapter
         loadDrinkData("")
         initListener()
+        initClick()
+    }
+
+    private fun initClick() {
+        binding.appBar.titleTV.setOnClickListener {
+            val packageNameModule = packageName
+            val dynamicModuleClassName = "com.rivaldy.id.test_feature.TestModuleActivity"
+            Intent().setClassName(packageNameModule, dynamicModuleClassName).also { intent ->
+                startActivity(intent)
+            }
+        }
     }
 
     override fun initObservers() {

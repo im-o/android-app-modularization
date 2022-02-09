@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.18" />
         <entry key="base/src/main/res/layout/dialog_progress.xml" value="0.14" />
         <entry key="base/src/main/res/menu/menu_main.xml" value="0.14921875" />
+        <entry key="test_feature/src/main/res/layout/activity_test_module.xml" value="0.17" />
       </map>
     </option>
   </component>
