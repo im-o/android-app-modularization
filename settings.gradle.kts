@@ -9,3 +9,4 @@ rootProject.name = "Cocktail MVVM"
 include(":app")
 include(":base")
 include(":test_feature")
+include(":core")
