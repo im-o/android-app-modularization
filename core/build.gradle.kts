@@ -7,6 +7,7 @@ plugins {
     id("kotlin-kapt")
     id("kotlin-platform-android")
     id("dagger.hilt.android.plugin")
+    id("com.apollographql.apollo3").version(Versions.apollo_version)
 }
 
 android {
@@ -79,4 +80,7 @@ dependencies {
 
     // ViewModel with Hilt
     implementation(MyDependencies.hilt_viewmodel)
+
+    // Apollo Client
+    api(MyDependencies.apollo_client)
 }

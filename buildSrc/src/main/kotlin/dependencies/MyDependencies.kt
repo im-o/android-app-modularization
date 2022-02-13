@@ -47,4 +47,7 @@ object MyDependencies {
 
     // ViewModel with Hilt
     const val hilt_viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hilt_viewModels}"
+
+    // Apollo Client
+    const val apollo_client = "com.apollographql.apollo3:apollo-runtime:${Versions.apollo_version}"
 }
