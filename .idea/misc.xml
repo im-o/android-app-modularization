@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ANDROID-DEV/MY-PROJECT/mvvm-cocktail-app/test_feature/src/main/res/layout/activity_test_module.xml" value="0.21467391304347827" />
         <entry key="app/src/main/res/drawable/bg_dark_white_outline.xml" value="0.161328125" />
         <entry key="app/src/main/res/drawable/bg_ripple_white_primary_square.xml" value="0.161328125" />
         <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.161328125" />
