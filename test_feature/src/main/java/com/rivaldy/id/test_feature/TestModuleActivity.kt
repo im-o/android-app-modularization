@@ -2,10 +2,11 @@ package com.rivaldy.id.test_feature
 
 import androidx.lifecycle.lifecycleScope
 import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.network.okHttpClient
 import com.rivaldy.id.base.BuildConfig
 import com.rivaldy.id.base.base.BaseActivity
 import com.rivaldy.id.base.data.network.DataResource
-import com.rivaldy.id.base.util.UtilFunctions.loge
+import com.rivaldy.id.base.util.UtilExtensions.isAreVisible
 import com.rivaldy.id.core.CharacterListQuery
 import com.rivaldy.id.test_feature.databinding.ActivityTestModuleBinding
 import okhttp3.OkHttpClient
@@ -24,6 +25,7 @@ class TestModuleActivity : BaseActivity<ActivityTestModuleBinding>() {
     }
     private val apolloClient = ApolloClient.Builder()
         .serverUrl("https://rickandmortyapi.com/graphql")
+        .okHttpClient(okHttpClient)
         .build()
 
     override fun getViewBinding() = ActivityTestModuleBinding.inflate(layoutInflater)
@@ -32,13 +34,13 @@ class TestModuleActivity : BaseActivity<ActivityTestModuleBinding>() {
     }
 
     override fun initObservers() {
+        binding.loadingPB.isAreVisible(true)
         lifecycleScope.launchWhenResumed {
-            try {
-                val response = apolloClient.query(CharacterListQuery()).execute()
-                loge("APOLLO : ${response.data?.characters?.results}")
-            } catch (e: Exception) {
-                loge("ERROR APOLLO : ${e}")
-            }
+            var strName = ""
+            val response = apolloClient.query(CharacterListQuery()).execute()
+            for (data in response.data?.characters?.results ?: return@launchWhenResumed) strName += "${data?.name}\n"
+            binding.nameTV.text = strName
+            binding.loadingPB.isAreVisible(false)
         }
     }
 
