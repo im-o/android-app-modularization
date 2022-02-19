@@ -28,6 +28,11 @@ object MyDependencies {
     const val retrofit2_adapter_rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit_version}"
     const val okhttp3 = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp3_version}"
 
+    // LOCAL STORAGE
+    const val room_runtime = "androidx.room:room-runtime:${Versions.room_version}"
+    const val room_compiler = "androidx.room:room-compiler:${Versions.room_version}"
+    const val room_ktx = "androidx.room:room-ktx:${Versions.room_version}"
+
     // Coroutines
     const val kotlinx_coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlin_coroutines_version}"
 

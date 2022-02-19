@@ -38,13 +38,12 @@ android {
     buildFeatures {
         viewBinding true
     }
-//    dynamicFeatures = [Modules.testFeature]
     dynamicFeatures = [':test_feature']
 }
 
 dependencies {
-    api(project(Modules.base))
-//    api(project(Modules.testFeature))
+    implementation(project(Modules.base))
+    implementation(project(Modules.core))
 
     // DEFAULT DEPENDENCIES
     implementation(MyDependencies.core_ktx)

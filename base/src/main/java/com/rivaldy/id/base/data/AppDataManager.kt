@@ -1,9 +1,12 @@
 package com.rivaldy.id.base.data
 
+import com.apollographql.apollo3.api.ApolloResponse
 import com.rivaldy.id.base.data.model.api.detail_drink.DetailDrinkResponse
 import com.rivaldy.id.base.data.model.api.drink.DrinkResponse
 import com.rivaldy.id.base.data.model.api.filter_drink.FilterDrinkResponse
 import com.rivaldy.id.base.data.remote.AppApiHelper
+import com.rivaldy.id.base.data.remote.graphql.AppGraphqlHelper
+import com.rivaldy.id.core.CharacterListQuery
 import javax.inject.Inject
 
 /**
@@ -12,7 +15,8 @@ import javax.inject.Inject
  */
 
 class AppDataManager @Inject constructor(
-    private val api: AppApiHelper
+    private val api: AppApiHelper,
+    private val graphql: AppGraphqlHelper
 ) : DataManager {
     override suspend fun getCategoriesApiCall(category: String): DrinkResponse {
         return api.getCategoriesApiCall(category)
@@ -44,5 +48,13 @@ class AppDataManager @Inject constructor(
 
     override suspend fun getDetailByIdApiCall(id: String): DetailDrinkResponse {
         return api.getDetailByIdApiCall(id)
+    }
+
+    override suspend fun getCharacterListQuery(): ApolloResponse<CharacterListQuery.Data> {
+        return graphql.getCharacterListQuery()
+    }
+
+    override suspend fun getCharacterListQueryByName(name: String): ApolloResponse<CharacterListQuery.Data> {
+        return graphql.getCharacterListQueryByName(name)
     }
 }

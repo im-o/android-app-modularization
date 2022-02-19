@@ -1,10 +1,13 @@
 package com.rivaldy.id.base.di
 
 import android.content.Context
+import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.network.okHttpClient
 import com.google.gson.GsonBuilder
 import com.rivaldy.id.base.BuildConfig
 import com.rivaldy.id.base.data.network.NetworkConnectionInterceptor
 import com.rivaldy.id.base.data.remote.ApiService
+import com.rivaldy.id.base.util.UtilConstants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,6 +17,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by rivaldy on 05/01/22.
@@ -42,6 +46,9 @@ object NetworkModule {
     @Provides
     fun providesOkHttpClient(logging: HttpLoggingInterceptor, networkConnectionInterceptor: NetworkConnectionInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
+            .connectTimeout(UtilConstants.TIME_OUT_CONNECTION, TimeUnit.SECONDS)
+            .readTimeout(UtilConstants.TIME_OUT_CONNECTION, TimeUnit.SECONDS)
+            .writeTimeout(UtilConstants.TIME_OUT_CONNECTION, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 val url = chain
                     .request()
@@ -72,5 +79,13 @@ object NetworkModule {
     @Provides
     fun providesApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Provides
+    fun providesApolloService(okHttpClient: OkHttpClient): ApolloClient {
+        return ApolloClient.Builder()
+            .serverUrl(BuildConfig.BASE_URL_GRAPHQL)
+            .okHttpClient(okHttpClient)
+            .build()
     }
 }

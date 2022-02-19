@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+    implementation(project(Modules.core))
 
     // DEFAULT DEPENDENCIES
     implementation(MyDependencies.core_ktx)
