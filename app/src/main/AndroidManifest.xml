@@ -16,6 +16,9 @@
         android:theme="@style/Theme.CocktailMVVM"
         tools:ignore="AllowBackup,UnusedAttribute">
         <activity
+            android:name=".ui.graphql.SampleQraphqlActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.drink_detail.DrinkDetailActivity"
             android:exported="false" />
         <activity

@@ -13,4 +13,6 @@
     <string name="str_info">%1$s • %2$s • %3$s</string>
     <string name="no_data_showing">No data showing…</string>
     <string name="title_test_feature">Test Feature</string>
+    <string name="go_to_new_module">Go to new module</string>
+    <string name="go_to_graphql_api">Go to graphql API</string>
 </resources>

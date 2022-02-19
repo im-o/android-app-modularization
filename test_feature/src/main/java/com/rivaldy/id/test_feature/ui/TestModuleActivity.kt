@@ -33,6 +33,8 @@ class TestModuleActivity : BaseActivity<ActivityTestModuleBinding>() {
     override fun getViewBinding() = ActivityTestModuleBinding.inflate(layoutInflater)
 
     override fun initView() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun initObservers() {

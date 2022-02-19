@@ -28,6 +28,7 @@ import com.rivaldy.id.cocktail.databinding.ActivityMainBinding
 import com.rivaldy.id.cocktail.ui.drink_detail.DrinkDetailActivity
 import com.rivaldy.id.cocktail.ui.filter_dialog.FilterDialogFragment
 import com.rivaldy.id.cocktail.ui.filter_dialog.FilterListener
+import com.rivaldy.id.cocktail.ui.graphql.SampleQraphqlActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,17 +52,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
         binding.listDataRV.adapter = mainAdapter
         loadDrinkData("")
         initListener()
-        initClick()
-    }
-
-    private fun initClick() {
-        binding.appBar.titleTV.setOnClickListener {
-            val packageNameModule = packageName
-            val dynamicModuleClassName = "com.rivaldy.id.test_feature.ui.TestModuleActivity"
-            Intent().setClassName(packageNameModule, dynamicModuleClassName).also { intent ->
-                startActivity(intent)
-            }
-        }
     }
 
     override fun initObservers() {
@@ -91,6 +81,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.sampleFeatureMenu -> {
+                val packageNameModule = packageName
+                val dynamicModuleClassName = "com.rivaldy.id.test_feature.ui.TestModuleActivity"
+                Intent().setClassName(packageNameModule, dynamicModuleClassName).also { intent ->
+                    startActivity(intent)
+                }
+            }
+            R.id.graphqlMenu -> openActivity(SampleQraphqlActivity::class.java)
             R.id.byCategoryMenu -> showFilterDialog(FILTER_BY_CATEGORY)
             R.id.byAlcoholicMenu -> showFilterDialog(FILTER_BY_ALCOHOLIC)
             R.id.byGlassMenu -> showFilterDialog(FILTER_BY_GLASSES)
