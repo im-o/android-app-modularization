@@ -1,5 +1,7 @@
-query CharacterList {
-    characters {
+query CharacterList(
+    $name: String
+) {
+    characters(page: 2, filter: { name:$name }) {
         info {
             count
             pages

@@ -17,7 +17,7 @@
 
     <application tools:ignore="AllowBackup,MissingApplicationIcon">
         <activity
-            android:name=".TestModuleActivity"
+            android:name=".ui.TestModuleActivity"
             android:exported="false" />
     </application>
 

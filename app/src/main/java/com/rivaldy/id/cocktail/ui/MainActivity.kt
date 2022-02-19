@@ -57,7 +57,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
     private fun initClick() {
         binding.appBar.titleTV.setOnClickListener {
             val packageNameModule = packageName
-            val dynamicModuleClassName = "com.rivaldy.id.test_feature.TestModuleActivity"
+            val dynamicModuleClassName = "com.rivaldy.id.test_feature.ui.TestModuleActivity"
             Intent().setClassName(packageNameModule, dynamicModuleClassName).also { intent ->
                 startActivity(intent)
             }
@@ -65,13 +65,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
     }
 
     override fun initObservers() {
-        viewModel.drinks.observe(this, {
+        viewModel.drinks.observe(this) {
             when (it) {
                 is DataResource.Loading -> isLoadData(true)
                 is DataResource.Success -> showCategories(it.value.drinks)
                 is DataResource.Failure -> showFailure(it)
             }
-        })
+        }
     }
 
     override fun showFailure(failure: DataResource.Failure) {
