@@ -16,6 +16,7 @@
         app:contentInsetStartWithNavigation="0dp">
 
         <TextView
+            android:id="@+id/titleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="@dimen/space_6"

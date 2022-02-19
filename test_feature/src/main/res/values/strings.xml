@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="go_new_module">Go To New Module (No Hilt First)</string>
+</resources>

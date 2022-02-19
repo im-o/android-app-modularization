@@ -17,6 +17,7 @@ android {
         targetSdk = Versions.target_sdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", "\"https://www.thecocktaildb.com/api/json/v1/1/\"")
+        buildConfigField("String", "BASE_URL_GRAPHQL", "\"https://rickandmortyapi.com/graphql\"")
     }
 
     buildTypes {
@@ -38,6 +39,7 @@ android {
 }
 
 dependencies {
+    implementation(project(Modules.core))
 
     // DEFAULT DEPENDENCIES
     implementation(MyDependencies.core_ktx)

@@ -43,4 +43,14 @@ class DataRepository @Inject constructor(
     suspend fun getDetailByIdApiCall(id: String) = safeApiCall {
         appDataManager.getDetailByIdApiCall(id)
     }
+
+    // Graphql API
+
+    suspend fun getCharacterListQuery() = safeApiCall {
+        appDataManager.getCharacterListQuery()
+    }
+
+    suspend fun getCharacterListQueryByName(name: String) = safeApiCall {
+        appDataManager.getCharacterListQueryByName(name)
+    }
 }

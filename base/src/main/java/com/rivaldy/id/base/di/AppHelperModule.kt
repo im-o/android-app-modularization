@@ -1,8 +1,10 @@
 package com.rivaldy.id.base.di
 
+import com.apollographql.apollo3.ApolloClient
 import com.rivaldy.id.base.data.AppDataManager
 import com.rivaldy.id.base.data.remote.ApiService
 import com.rivaldy.id.base.data.remote.AppApiHelper
+import com.rivaldy.id.base.data.remote.graphql.AppGraphqlHelper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +25,10 @@ object AppHelperModule {
     fun providesAppApiHelper(apiService: ApiService) = AppApiHelper(apiService)
 
     @Provides
-    fun providesAppDataManager(appApiHelper: AppApiHelper): AppDataManager {
-        return AppDataManager(appApiHelper)
+    fun providesAppGraphqlHelper(apolloClient: ApolloClient) = AppGraphqlHelper(apolloClient)
+
+    @Provides
+    fun providesAppDataManager(appApiHelper: AppApiHelper, appGraphqlHelper: AppGraphqlHelper): AppDataManager {
+        return AppDataManager(appApiHelper, appGraphqlHelper)
     }
 }

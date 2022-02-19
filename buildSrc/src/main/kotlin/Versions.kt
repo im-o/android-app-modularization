@@ -30,6 +30,7 @@ object Versions {
     const val room_version = "2.3.0"
     const val data_store_version = "1.0.0-rc01"
     const val glide_version = "4.11.0"
+    const val apollo_version = "3.1.0"
 
     const val compile_sdk = 31
     const val min_sdk = 23

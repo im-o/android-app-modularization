@@ -1,0 +1,18 @@
+query CharacterList(
+    $name: String
+) {
+    characters(page: 2, filter: { name:$name }) {
+        info {
+            count
+            pages
+            next
+            prev
+        }
+        results {
+            name
+            species
+            gender
+            image
+        }
+    }
+}
