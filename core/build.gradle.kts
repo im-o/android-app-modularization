@@ -44,42 +44,44 @@ android {
 dependencies {
 
     // DEFAULT DEPENDENCIES
-    implementation(MyDependencies.core_ktx)
-    implementation(MyDependencies.appcompat)
-    implementation(MyDependencies.material)
+    api(MyDependencies.core_ktx)
+    api(MyDependencies.appcompat)
+    api(MyDependencies.material)
+    api(MyDependencies.legacy_support)
     testImplementation(MyDependencies.junit)
     androidTestImplementation(MyDependencies.test_ext_junit)
     androidTestImplementation(MyDependencies.espresso_core)
 
     // UI
-    implementation(MyDependencies.constraint_layout)
-    implementation(MyDependencies.ui_ktx)
-    implementation(MyDependencies.navigation_fragment_ktx)
+    api(MyDependencies.swiperefreshlayout)
+    api(MyDependencies.constraint_layout)
+    api(MyDependencies.ui_ktx)
+    api(MyDependencies.navigation_fragment_ktx)
 
     // REMOTE
-    implementation(MyDependencies.retrofit)
-    implementation(MyDependencies.retrofit2_converter_gson)
-    implementation(MyDependencies.retrofit2_adapter_rxjava2)
-    implementation(MyDependencies.okhttp3)
+    api(MyDependencies.retrofit)
+    api(MyDependencies.retrofit2_converter_gson)
+    api(MyDependencies.retrofit2_adapter_rxjava2)
+    api(MyDependencies.okhttp3)
 
     // Coroutines
     testImplementation(MyDependencies.kotlinx_coroutines_test)
 
     // Glide
-    implementation(MyDependencies.glide)
+    api(MyDependencies.glide)
 
     // Lifecycle KTX
-    implementation(MyDependencies.lifecycle_extensions)
+    api(MyDependencies.lifecycle_extensions)
     // Activity & Fragment KTX
-    implementation(MyDependencies.activity_ktx)
-    implementation(MyDependencies.fragment_ktx)
+    api(MyDependencies.activity_ktx)
+    api(MyDependencies.fragment_ktx)
 
     // DI - Hilt
     implementation(MyDependencies.hilt)
     kapt(MyDependencies.hilt_kapt)
 
     // ViewModel with Hilt
-    implementation(MyDependencies.hilt_viewmodel)
+    api(MyDependencies.hilt_viewmodel)
 
     // Apollo Client
     api(MyDependencies.apollo_client)
