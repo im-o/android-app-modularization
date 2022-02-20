@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cocktail MVVM</string>
+    <string name="app_name">Android App Modularization</string>
     <string name="todo">TODO</string>
     <string name="search_by_cocktail_name">Search cocktail by name…</string>
     <string name="order_by_alcoholic">Order by alcoholic</string>
