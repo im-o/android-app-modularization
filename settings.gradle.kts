@@ -1,11 +1,14 @@
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+pluginManagement {
     repositories {
         google()
+        gradlePluginPortal()
         mavenCentral()
     }
 }
-rootProject.name = "Cocktail MVVM"
+
+rootProject.name = "Android App Modularization"
+rootProject.buildFileName = "build.gradle.kts"
+
 include(":app")
 include(":base")
 include(":test_feature")
