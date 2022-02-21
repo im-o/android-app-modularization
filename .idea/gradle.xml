@@ -14,7 +14,8 @@
             <option value="$PROJECT_DIR$/base" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/core" />
-            <option value="$PROJECT_DIR$/test_feature" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/test_feature" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

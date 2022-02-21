@@ -11,5 +11,5 @@ rootProject.buildFileName = "build.gradle.kts"
 
 include(":app")
 include(":base")
-include(":test_feature")
+include(":features:test_feature")
 include(":core")
