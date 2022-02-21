@@ -9,7 +9,7 @@ object Modules {
     const val base = ":base"
     const val app = ":app"
     const val core = ":core"
-    const val testFeature = ":test_feature"
+    const val testFeature = ":features:test_feature"
 
     fun getAllModules() = Modules::class.memberProperties
         .filter { it.isConst }
