@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.rivaldy.id.base.data.model.local.FilterDataLocal
 import com.rivaldy.id.cocktail.databinding.RowItemFilterBinding
+import com.rivaldy.id.core.data.model.local.FilterDataLocal
 
 /**
  * Created by rivaldy on 05/01/22.

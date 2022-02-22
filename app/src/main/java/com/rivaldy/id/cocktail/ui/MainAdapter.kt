@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.rivaldy.id.base.data.model.api.drink.DrinkData
 import com.rivaldy.id.cocktail.R
 import com.rivaldy.id.cocktail.databinding.RowItemCocktailBinding
+import com.rivaldy.id.core.data.model.api.drink.DrinkData
 
 /**
  * Created by rivaldy on 05/01/22.

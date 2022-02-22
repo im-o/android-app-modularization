@@ -4,8 +4,8 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import com.rivaldy.id.base.data.network.DataResource
-import com.rivaldy.id.base.util.UtilDialog
+import com.rivaldy.id.core.data.network.DataResource
+import com.rivaldy.id.core.utils.UtilDialog
 
 /**
  * Created by rivaldy on 05/01/22.

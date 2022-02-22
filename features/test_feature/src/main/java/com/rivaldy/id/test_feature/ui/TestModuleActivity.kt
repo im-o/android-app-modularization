@@ -5,11 +5,11 @@ import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.exception.ApolloException
 import com.apollographql.apollo3.network.okHttpClient
 import com.rivaldy.id.base.base.BaseActivity
-import com.rivaldy.id.base.data.network.DataResource
-import com.rivaldy.id.base.util.UtilExtensions.isAreVisible
-import com.rivaldy.id.base.util.UtilFunctions.loge
 import com.rivaldy.id.core.BuildConfig
 import com.rivaldy.id.core.CharacterListQuery
+import com.rivaldy.id.core.data.network.DataResource
+import com.rivaldy.id.core.utils.UtilExtensions.isAreVisible
+import com.rivaldy.id.core.utils.UtilFunctions.loge
 import com.rivaldy.id.test_feature.databinding.ActivityTestModuleBinding
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

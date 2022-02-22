@@ -3,12 +3,12 @@ package com.rivaldy.id.cocktail.ui.drink_detail
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.rivaldy.id.base.base.BaseActivity
-import com.rivaldy.id.base.data.model.api.detail_drink.DetailDrinkData
-import com.rivaldy.id.base.data.model.api.drink.DrinkData
-import com.rivaldy.id.base.data.network.DataResource
-import com.rivaldy.id.base.util.UtilExceptions.handleApiError
 import com.rivaldy.id.cocktail.R
 import com.rivaldy.id.cocktail.databinding.ActivityDrinkDetailBinding
+import com.rivaldy.id.core.data.model.api.detail_drink.DetailDrinkData
+import com.rivaldy.id.core.data.model.api.drink.DrinkData
+import com.rivaldy.id.core.data.network.DataResource
+import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
