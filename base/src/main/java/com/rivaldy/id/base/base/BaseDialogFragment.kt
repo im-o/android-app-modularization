@@ -12,8 +12,8 @@ import android.widget.RelativeLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.viewbinding.ViewBinding
-import com.rivaldy.id.base.data.network.DataResource
-import com.rivaldy.id.base.util.UtilDialog.setProgressDialog
+import com.rivaldy.id.core.data.network.DataResource
+import com.rivaldy.id.core.utils.UtilDialog.setProgressDialog
 
 /**
  * Created by rivaldy on 05/01/22.

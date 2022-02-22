@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rivaldy.id.base.data.DataRepository
-import com.rivaldy.id.base.data.model.api.detail_drink.DetailDrinkResponse
-import com.rivaldy.id.base.data.network.DataResource
+import com.rivaldy.id.core.data.DataRepository
+import com.rivaldy.id.core.data.model.api.detail_drink.DetailDrinkResponse
+import com.rivaldy.id.core.data.network.DataResource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

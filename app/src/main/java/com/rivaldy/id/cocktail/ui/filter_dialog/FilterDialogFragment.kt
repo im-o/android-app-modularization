@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.rivaldy.id.base.base.BaseDialogFragment
-import com.rivaldy.id.base.data.model.api.filter_drink.FilterDrinkData
-import com.rivaldy.id.base.data.model.local.FilterDataLocal
-import com.rivaldy.id.base.data.network.DataResource
-import com.rivaldy.id.base.util.UtilConstants.FILTER_BY_ALCOHOLIC
-import com.rivaldy.id.base.util.UtilConstants.FILTER_BY_CATEGORY
-import com.rivaldy.id.base.util.UtilConstants.FILTER_BY_GLASSES
-import com.rivaldy.id.base.util.UtilConstants.ZERO_DATA
-import com.rivaldy.id.base.util.UtilExceptions.handleApiError
-import com.rivaldy.id.base.util.UtilExtensions.isAreVisible
 import com.rivaldy.id.cocktail.databinding.FragmentFilterDialogBinding
+import com.rivaldy.id.core.data.model.api.filter_drink.FilterDrinkData
+import com.rivaldy.id.core.data.model.local.FilterDataLocal
+import com.rivaldy.id.core.data.network.DataResource
+import com.rivaldy.id.core.utils.UtilConstants.FILTER_BY_ALCOHOLIC
+import com.rivaldy.id.core.utils.UtilConstants.FILTER_BY_CATEGORY
+import com.rivaldy.id.core.utils.UtilConstants.FILTER_BY_GLASSES
+import com.rivaldy.id.core.utils.UtilConstants.ZERO_DATA
+import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
+import com.rivaldy.id.core.utils.UtilExtensions.isAreVisible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

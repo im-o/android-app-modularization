@@ -3,11 +3,11 @@ package com.rivaldy.id.cocktail.ui.graphql
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.rivaldy.id.base.base.BaseActivity
-import com.rivaldy.id.base.data.network.DataResource
-import com.rivaldy.id.base.util.UtilConstants
-import com.rivaldy.id.base.util.UtilExtensions.isAreVisible
 import com.rivaldy.id.cocktail.databinding.ActivitySampleQraphqlBinding
 import com.rivaldy.id.core.CharacterListQuery
+import com.rivaldy.id.core.data.network.DataResource
+import com.rivaldy.id.core.utils.UtilConstants
+import com.rivaldy.id.core.utils.UtilExtensions.isAreVisible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rivaldy.id.base.data.DataRepository
-import com.rivaldy.id.base.data.model.api.filter_drink.FilterDrinkResponse
-import com.rivaldy.id.base.data.network.DataResource
-import com.rivaldy.id.base.util.UtilConstants.STR_FILTER_LIST
+import com.rivaldy.id.core.data.DataRepository
+import com.rivaldy.id.core.data.model.api.filter_drink.FilterDrinkResponse
+import com.rivaldy.id.core.data.network.DataResource
+import com.rivaldy.id.core.utils.UtilConstants.STR_FILTER_LIST
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

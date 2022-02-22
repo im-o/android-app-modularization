@@ -1,6 +1,6 @@
 package com.rivaldy.id.cocktail.ui.filter_dialog
 
-import com.rivaldy.id.base.data.model.local.FilterDataLocal
+import com.rivaldy.id.core.data.model.local.FilterDataLocal
 
 /**
  * Created by rivaldy on 05/01/22.
