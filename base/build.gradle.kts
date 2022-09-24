@@ -4,9 +4,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-parcelize")
-    id("kotlin-kapt")
     id("kotlin-platform-android")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -45,10 +43,5 @@ dependencies {
     testImplementation(MyDependencies.junit)
     androidTestImplementation(MyDependencies.test_ext_junit)
     androidTestImplementation(MyDependencies.espresso_core)
-    kapt(MyDependencies.room_compiler)
     testImplementation(MyDependencies.kotlinx_coroutines_test)
-
-    // DI - Hilt
-    implementation(MyDependencies.hilt)
-    kapt(MyDependencies.hilt_kapt)
 }
