@@ -29,6 +29,10 @@ Hello everyone, this is a sample base project to easily build an Android App (te
 - Fixed code
 - Etc (as long as it's useful)
 
+## How to generate apollo schema.graphql
+- follow this -> https://stackoverflow.com/questions/37397886/get-graphql-whole-schema-query
+- and this to fixed error -> https://github.com/apollographql/apollo-kotlin/issues/2719
+
 <!-- ## Rule : -->
 <!-- - I think no rule, as long as it's useful i'll be review it, if you Android Developer you can easy to make pull request about this project -->
 <!-- - When you see this project is spam, you can report [here](https://hacktoberfest.digitalocean.com/report) -->

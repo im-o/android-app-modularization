@@ -18,9 +18,7 @@
             <option value="$PROJECT_DIR$/features/test_feature" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
-    <option name="offlineMode" value="true" />
   </component>
 </project>
