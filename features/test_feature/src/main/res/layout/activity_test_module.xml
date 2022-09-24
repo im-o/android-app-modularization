@@ -29,10 +29,4 @@
         android:layout_gravity="center"
         tools:text="@string/title_test_feature" />
 
-    <ProgressBar
-        android:id="@+id/loadingPB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

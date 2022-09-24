@@ -17,7 +17,6 @@ import javax.inject.Inject
  * Find me on my Github -> https://github.com/im-o
  */
 
-@HiltViewModel
 class TestModuleViewModel @Inject constructor(
     private val dataRepository: DataRepository
 ) : ViewModel() {

@@ -1,58 +1,85 @@
 package com.rivaldy.id.test_feature.ui
 
-import androidx.lifecycle.lifecycleScope
-import com.apollographql.apollo3.ApolloClient
-import com.apollographql.apollo3.exception.ApolloException
-import com.apollographql.apollo3.network.okHttpClient
-import com.rivaldy.id.base.base.BaseActivity
-import com.rivaldy.id.core.BuildConfig
+import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
+import com.apollographql.apollo3.api.ApolloResponse
+import com.rivaldy.id.base.modular.BaseModuleActivity
+import com.rivaldy.id.core.di.SubModuleDependencies
 import com.rivaldy.id.core.CharacterListQuery
 import com.rivaldy.id.core.data.network.DataResource
-import com.rivaldy.id.core.utils.UtilExtensions.isAreVisible
-import com.rivaldy.id.core.utils.UtilFunctions.loge
+import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
 import com.rivaldy.id.test_feature.databinding.ActivityTestModuleBinding
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+import com.rivaldy.id.test_feature.di.DaggerTestModuleComponent
+import com.rivaldy.id.test_feature.di.TestModuleComponent
+import dagger.hilt.android.EntryPointAccessors
+import javax.inject.Inject
 
-class TestModuleActivity : BaseActivity<ActivityTestModuleBinding>() {
-    private val loggingInterceptor by lazy {
-        if (BuildConfig.DEBUG) HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-        else HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+class TestModuleActivity : BaseModuleActivity<ActivityTestModuleBinding>() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel: TestModuleViewModel by viewModels { viewModelFactory }
+    private var component: TestModuleComponent? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityTestModuleBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        initView()
     }
 
-    private val okHttpClient by lazy {
-        OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .build()
+
+    override fun initInjectComponent() {
+        getActivityComponent()?.inject(this)
     }
-    private val apolloClient = ApolloClient.Builder()
-        .serverUrl("https://rickandmortyapi.com/graphql")
-        .okHttpClient(okHttpClient)
-        .build()
 
     override fun getViewBinding() = ActivityTestModuleBinding.inflate(layoutInflater)
 
     override fun initView() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        initData()
     }
 
     override fun initObservers() {
-        binding.loadingPB.isAreVisible(true)
-        lifecycleScope.launchWhenResumed {
-            var strName = ""
-            val response = try {
-                apolloClient.query(CharacterListQuery()).execute()
-            } catch (e: ApolloException) {
-                loge("LaunchList Failure : $e")
-                null
+        viewModel.characters.observe(this) {
+            when (it) {
+                is DataResource.Loading -> showLoading(true)
+                is DataResource.Success -> showCharacters(it.value)
+                is DataResource.Failure -> showFailure(it)
             }
-            for (data in response?.data?.characters?.results ?: return@launchWhenResumed) strName += "${data?.name}\n"
-            binding.nameTV.text = strName
-            binding.loadingPB.isAreVisible(false)
         }
     }
 
+    private fun showCharacters(response: ApolloResponse<CharacterListQuery.Data>) {
+        var strName = ""
+        for (item in response.data?.characters?.results ?: return) strName += "${item?.name}\n"
+        binding.nameTV.text = strName
+        showLoading(false)
+    }
+
     override fun showFailure(failure: DataResource.Failure) {
+        showLoading(false)
+        handleApiError(failure)
+    }
+
+    private fun initData() {
+        viewModel.getCharacterListQuery()
+    }
+
+    private fun getActivityComponent(): TestModuleComponent? {
+        if (component == null) {
+            component = DaggerTestModuleComponent.builder()
+                .context(applicationContext)
+                .dependencies(
+                    EntryPointAccessors.fromApplication(
+                        applicationContext,
+                        SubModuleDependencies::class.java
+                    )
+                )
+                .build()
+        }
+        return component
     }
 }
