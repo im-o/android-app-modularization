@@ -2,7 +2,10 @@ package com.rivaldy.id.base.base
 
 import android.app.Dialog
 import android.os.Bundle
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.BuildCompat
 import androidx.viewbinding.ViewBinding
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilDialog
@@ -25,7 +28,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        finish()
         return super.onSupportNavigateUp()
     }
 

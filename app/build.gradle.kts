@@ -10,35 +10,38 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "30.0.3"
+    compileSdk = Versions.compile_sdk
 
     defaultConfig {
-        applicationId "com.rivaldy.id.cocktail"
-        minSdkVersion 23
-        targetSdkVersion 31
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId = "com.rivaldy.id.cocktail"
+        minSdk = Versions.min_sdk
+        targetSdk = Versions.target_sdk
+        versionCode = Versions.version_code
+        versionName = Versions.version_name
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
-    dynamicFeatures = [':features:test_feature']
+
+    setDynamicFeatures(mutableSetOf(
+        Modules.testFeature
+    ))
 }
 
 dependencies {
