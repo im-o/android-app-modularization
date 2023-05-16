@@ -2,13 +2,13 @@ package com.rivaldy.id.cocktail.ui.graphql
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rivaldy.id.cocktail.R
 import com.rivaldy.id.cocktail.databinding.RowItemCocktailBinding
 import com.rivaldy.id.core.CharacterListQuery
+import com.rivaldy.id.core.extensions.getDiffCallback
 
 /**
  * Created by rivaldy on 05/01/22.
@@ -17,7 +17,7 @@ import com.rivaldy.id.core.CharacterListQuery
 
 class SampleGraphqlAdapter(
     private val listener: (CharacterListQuery.Result) -> Unit
-) : ListAdapter<CharacterListQuery.Result, SampleGraphqlAdapter.ViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<CharacterListQuery.Result, SampleGraphqlAdapter.ViewHolder>(getDiffCallback()) {
 
     inner class ViewHolder(private val binding: RowItemCocktailBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindItem(item: CharacterListQuery.Result) {
@@ -38,17 +38,5 @@ class SampleGraphqlAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItem(getItem(position))
-    }
-
-    companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<CharacterListQuery.Result>() {
-            override fun areItemsTheSame(oldItem: CharacterListQuery.Result, newItem: CharacterListQuery.Result): Boolean {
-                return oldItem.name == newItem.name
-            }
-
-            override fun areContentsTheSame(oldItem: CharacterListQuery.Result, newItem: CharacterListQuery.Result): Boolean {
-                return oldItem == newItem
-            }
-        }
     }
 }

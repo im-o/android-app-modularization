@@ -15,3 +15,5 @@
 local.properties
 /buildSrc/.gradle
 /buildSrc/build
+/.idea/sonarlint
+/.idea/kotlinc.xml
