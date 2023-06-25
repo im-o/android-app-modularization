@@ -10,6 +10,7 @@ plugins {
     id("kotlin-kapt")
 }
 
+@Suppress("UnstableApiUsage")
 android {
     compileSdk = Versions.compile_sdk
 
@@ -92,4 +93,7 @@ dependencies {
 
     // Apollo Client
     api(MyDependencies.apollo_client)
+
+    // Android Play Core
+    api(MyDependencies.android_play_core)
 }

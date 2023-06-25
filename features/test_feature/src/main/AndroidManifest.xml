@@ -6,7 +6,6 @@
 
     <dist:module
         dist:instant="false"
-        dist:onDemand="true"
         dist:title="@string/title_test_feature">
         <dist:delivery>
             <dist:on-demand />

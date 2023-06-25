@@ -15,4 +15,6 @@
     <string name="title_test_feature">Test Feature</string>
     <string name="go_to_new_module">Go to new module</string>
     <string name="go_to_graphql_api">Go to graphql API</string>
+    <string name="install_feature">Install Feature</string>
+    <string name="want_to_install_feature">Do you want to download test feature?</string>
 </resources>

@@ -7,8 +7,14 @@ import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.play.core.splitinstall.SplitInstallManager
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
+import com.google.android.play.core.splitinstall.SplitInstallRequest
+import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
+import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import com.rivaldy.id.base.base.BaseActivity
 import com.rivaldy.id.cocktail.R
 import com.rivaldy.id.cocktail.databinding.ActivityMainBinding
@@ -28,7 +34,9 @@ import com.rivaldy.id.core.utils.UtilConstants.STR_COCKTAIL
 import com.rivaldy.id.core.utils.UtilConstants.ZERO_DATA
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
 import com.rivaldy.id.core.utils.UtilExtensions.isAreVisible
+import com.rivaldy.id.core.utils.UtilExtensions.myToast
 import com.rivaldy.id.core.utils.UtilExtensions.openActivity
+import com.rivaldy.id.core.utils.UtilFunctions.loge
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,6 +50,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
     private var isLoadPage = false
     private var gridLayoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
 
+    private lateinit var manager: SplitInstallManager
+    private var packageNameModule = ""
+    private var dynamicModuleClassName = ""
+    private var isModuleAdminInstalled = false
+
     override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
 
     override fun initView() {
@@ -52,6 +65,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
         binding.listDataRV.adapter = mainAdapter
         loadDrinkData("")
         initListener()
+        initSplitInstallManager()
     }
 
     override fun initObservers() {
@@ -81,13 +95,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.sampleFeatureMenu -> {
-                val packageNameModule = packageName
-                val dynamicModuleClassName = "com.rivaldy.id.test_feature.ui.TestModuleActivity"
-                Intent().setClassName(packageNameModule, dynamicModuleClassName).also { intent ->
-                    startActivity(intent)
-                }
-            }
+            R.id.sampleFeatureMenu -> openDialogInstallFeature()
             R.id.graphqlMenu -> openActivity(SampleQraphqlActivity::class.java)
             R.id.byCategoryMenu -> showFilterDialog(FILTER_BY_CATEGORY)
             R.id.byAlcoholicMenu -> showFilterDialog(FILTER_BY_ALCOHOLIC)
@@ -155,10 +163,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
         binding.swipeRefresh.isRefreshing = isLoadData
     }
 
-    private fun showCategories(drinks: MutableList<DrinkData>?) {
+    private fun showCategories(drinks: MutableList<DrinkData>? = mutableListOf()) {
         isLoadData(false)
-        binding.noDataTV.isAreVisible(drinks == null || drinks.size == ZERO_DATA)
-        binding.listDataRV.isAreVisible(drinks != null || drinks?.size ?: 0 > ZERO_DATA)
+        binding.noDataTV.isAreVisible((drinks?.size ?: 0) == ZERO_DATA)
+        binding.listDataRV.isAreVisible((drinks?.size ?: 0) > ZERO_DATA)
         listDrink = drinks ?: return
         showLimitData()
     }
@@ -181,5 +189,119 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
         bundle.putString(FilterDialogFragment.EXTRA_FILTER_TYPE, filterType)
         filterDialogFragment.arguments = bundle
         filterDialogFragment.show(supportFragmentManager, FilterDialogFragment::class.java.simpleName)
+    }
+
+    // Init SplitInstallStateUpdatedListener
+    private fun goToDynamicFeature() {
+        dynamicModuleClassName = CLASS_ADMIN_FEATURE
+        Intent().setClassName(packageNameModule, dynamicModuleClassName).also {
+            startActivity(it)
+        }
+    }
+
+    private fun initSplitInstallManager() {
+        packageNameModule = packageName
+        manager = SplitInstallManagerFactory.create(this)
+        manager.installedModules.toList().forEach {
+            if (it.equals(MODULE_ADMIN_FEATURE, true)) {
+                isModuleAdminInstalled = true
+            }
+        }
+    }
+
+    private val splitInstallStateUpdatedListener = SplitInstallStateUpdatedListener { state ->
+        val name = state.moduleNames().joinToString(" - ")
+        when (state.status()) {
+            SplitInstallSessionStatus.DOWNLOADING -> {
+                toastLog("DOWNLOADING $name")
+            }
+
+            SplitInstallSessionStatus.REQUIRES_USER_CONFIRMATION -> {
+                toastLog("REQUIRES_USER_CONFIRMATION")
+            }
+
+            SplitInstallSessionStatus.INSTALLED -> {
+                toastLog("INSTALLED")
+                initSplitInstallManager()
+                isLoadData(false)
+            }
+
+            SplitInstallSessionStatus.INSTALLING -> {
+                toastLog("INSTALLING $name")
+            }
+
+            SplitInstallSessionStatus.FAILED -> {
+                toastLog("FAILED")
+            }
+
+            SplitInstallSessionStatus.CANCELING -> {
+                toastLog("CANCELING")
+            }
+
+            SplitInstallSessionStatus.CANCELED -> {
+                toastLog("CANCELED")
+            }
+
+            SplitInstallSessionStatus.DOWNLOADED -> {
+                toastLog("DOWNLOADED")
+            }
+
+            SplitInstallSessionStatus.PENDING -> {
+                toastLog("PENDING")
+            }
+
+            SplitInstallSessionStatus.UNKNOWN -> {
+                toastLog("UNKNOWN")
+            }
+        }
+    }
+
+    private fun openDialogInstallFeature() {
+        if (!isModuleAdminInstalled) {
+            val builder = AlertDialog.Builder(this, R.style.ThemeOverlay_MaterialComponents_Dialog_Alert)
+                .setTitle(getString(R.string.install_feature))
+                .setMessage(getString(R.string.want_to_install_feature))
+                .setPositiveButton(android.R.string.ok) { _, _ ->
+                    isLoadData(true)
+                    val request = SplitInstallRequest.newBuilder()
+                        .addModule(MODULE_ADMIN_FEATURE)
+                        .build()
+                    manager.startInstall(request)
+                        .addOnCompleteListener {
+                            isLoadData(false)
+                            toastLog("Success, try to open feature again.")
+                        }
+                        .addOnSuccessListener {
+                            isLoadData(true)
+                            toastLog("Loading...")
+                        }
+                        .addOnFailureListener {
+                            isLoadData(false)
+                            toastLog("Error Installing new feature...")
+                        }
+                }.setNegativeButton(android.R.string.cancel, null)
+            builder.create().show()
+        } else goToDynamicFeature()
+    }
+
+    private fun toastLog(message: String) {
+        loge(message)
+        myToast(message)
+        initSplitInstallManager()
+    }
+
+    override fun onResume() {
+        manager.registerListener(splitInstallStateUpdatedListener)
+        super.onResume()
+    }
+
+    override fun onPause() {
+        manager.unregisterListener(splitInstallStateUpdatedListener)
+        super.onPause()
+    }
+
+    companion object {
+        const val MODULE_ADMIN_FEATURE = "test_feature"
+        const val CLASS_ADMIN_FEATURE = "com.rivaldy.id.test_feature.ui.TestModuleActivity"
     }
 }

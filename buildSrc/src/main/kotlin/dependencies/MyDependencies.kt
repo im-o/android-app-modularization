@@ -55,4 +55,7 @@ object MyDependencies {
 
     // Apollo Client
     const val apollo_client = "com.apollographql.apollo3:apollo-runtime:${Versions.apollo_version}"
+
+    // Android Play Core
+    const val android_play_core = "com.google.android.play:core:${Versions.android_play_core_version}"
 }

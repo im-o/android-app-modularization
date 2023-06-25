@@ -17,3 +17,5 @@ local.properties
 /buildSrc/build
 /.idea/sonarlint
 /.idea/kotlinc.xml
+bundletool*
+app.apks
