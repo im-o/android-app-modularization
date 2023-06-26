@@ -1,5 +1,5 @@
 # Android App with MVVM Architecture and Modularization
-Hello everyone, this is a sample base project to easily build an Android App (template by [rivaldy_o](https://github.com/im-o))  
+Hello everyone, this is a sample base project to easily build an Android App (template by [rivaldy_o](https://github.com/im-o)).  
   
 ***Contact me on:***  
 [![](https://img.shields.io/badge/-Telegram-blue?logo=telegram)](http://t.me/rvl_o)
