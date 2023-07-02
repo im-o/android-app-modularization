@@ -2,9 +2,8 @@ package com.rivaldy.id.base.modular
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.rivaldy.id.base.base.BaseSplitActivity
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilDialog
 
@@ -13,7 +12,7 @@ import com.rivaldy.id.core.utils.UtilDialog
  * Find me on my Github -> https://github.com/im-o
  */
 
-abstract class BaseModuleActivity<VB : ViewBinding> : AppCompatActivity() {
+abstract class BaseModuleActivity<VB : ViewBinding> : BaseSplitActivity() {
     lateinit var binding: VB
     private val progressDialog: Dialog by lazy { UtilDialog.setProgressDialog(this) }
 

@@ -4,11 +4,12 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-parcelize")
-    id("kotlin-kapt")
     id("kotlin-platform-android")
     id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
+@Suppress("UnstableApiUsage")
 android {
     compileSdk = Versions.compile_sdk
 

@@ -273,7 +273,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SearchView.OnQueryText
                         }
                         .addOnSuccessListener {
                             isLoadData(true)
-                            toastLog("Loading...")
                         }
                         .addOnFailureListener {
                             isLoadData(false)
